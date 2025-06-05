@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>À propos | Reoman Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #6B0F1A, #36080D);
+      color: #f4f4f4;
+    }
+
+    header {
+      background-color: #fdf7e7;
+      color: #000;
+      height: 90px;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: opacity 0.4s ease;
+    }
+
+    header.scrolled {
+      opacity: 0.4;
+    }
+
+    .logo img {
+      height: 100px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav li {
+      position: relative;
+      user-select: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .arrow {
+      border: solid #000;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 4px;
+      transform: rotate(45deg);
+      margin-left: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fdf7e7;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      min-width: 160px;
+      z-index: 2000;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 15px;
+      color: #000;
+      font-weight: normal;
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #d9d2b8;
+    }
+
+    nav li.open > a .arrow {
+      transform: rotate(-135deg);
+    }
+
+    nav li.open > .dropdown-menu {
+      display: block;
+    }
+
+    .section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 1rem;
+    }
+
+    .section h1,
+    .section h2,
+    .section h3 {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #fdf7e7;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #fdf7e7;
+    }
+
+    .section p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .bubbles-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .bubble-item {
+      background-color: #fdf7e7;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .bubble-item img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .bubble-item:hover {
+      transform: scale(1.05);
+    }
+
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .project {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .project img {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .project button {
+      margin-top: 0.5rem;
+      background-color: #fdf7e7;
+      color: #000;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta a {
+      background-color: #fdf7e7;
+      color: #000;
+      padding: 12px 24px;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    /* Nouveau style pour la section CV & Portfolio côte à côte */
+    .cv-portfolio-container {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cv-portfolio-block {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem 2rem 2rem;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .cv-portfolio-block h2 {
+      color: #fdf7e7;
+      margin-bottom: 1rem;
+    }
+
+    .cv-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1rem auto;
+      background-color: #fdf7e7;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cv-icon img {
+      max-width: 80px;
+      max-height: 80px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/Monogramme.png" alt="Logo Reoman" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="accueil1.html">Accueil</a></li>
+        <li class="dropdown">
+          <a href="#" id="projetsMenu">Projets <i class="arrow"></i></a>
+          <div class="dropdown-menu" aria-labelledby="projetsMenu">
+            <a href="illustrator.html">Illustrator</a>
+            <a href="aftereffects.html">After Effects</a>
+            <a href="video.html">Vidéos</a>
+            <a href="figma.html">Figma</a>
+          </div>
+        </li>
+        <li><a href="Apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="section">
+    <h1>À propos de moi</h1>
+    <p>Je cherche une alternance dans les domaines du design web et de la communication digitale. J’aime créer des choses visuellement plaisantes. Mon rêve est de devenir Web Designer.</p>
+
+    <h2>Mon parcours</h2>
+    <p>Actuellement étudiant à l'EDTA Sornas, je prépare un Bachelor en chef de projet en communication digitale. Un projet marquant fut la création d’un logo sur Illustrator pour un particulier : ma première vraie commande sur demande. J’ai un esprit critique affuté et une bonne capacité d’analyse.</p>
+
+    <h2>Compétences</h2>
+    <div class="bubbles-container">
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/logo%20illustrator.png" alt="">Adobe Illustrator</div>
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-adobe-after-effects-48.png" alt="">After Effects</div>
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-figma-48.png" alt="">Figma</div>
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-toile-48.png" alt="">Canva</div>
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-photoshop-48.png" alt="">Photoshop</div>
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-html-50.png" alt="">HTML & CSS</div>
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/logosource_capcut-logo-png.png" alt="">CapCut</div>
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-wordpress-2-32.png" alt="">WordPress (débutant)</div>
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/ai.png" alt="">IA générative</div>
+    </div>
+
+    <h2>Domaines d’expertise</h2>
+    <div class="bubbles-container">
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/logo%20illustrator.png" alt="">Graphisme</div>
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-figma-48.png" alt="">Conception de maquettes web</div>
+      <div class="bubble-item"><img src="file:///C:/Users/roman/OneDrive/Desktop/projets/lecteur-video.png" alt="">Montage vidéo</div>
+    </div>
+
+    <!-- Début nouveau compartiment CV & Portfolio -->
+    <div class="cv-portfolio-container">
+      <!-- CV -->
+      <div class="cv-portfolio-block">
+        <h2>CV</h2>
+        <div class="cv-icon">
+          <!-- Met ici l'icône/image de ton CV -->
+          <img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-cv-30.png" alt="Icône CV" />
+        </div>
+        <div class="bubbles-container" style="justify-content: center; gap: 1rem; margin-top: 1rem;">
+          <div class="bubble-item" onclick="window.open('New Alt Cv.pdf', '_self')">
+            <img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-visible-50.png" alt="Visualiser" />
+            Visualiser
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio -->
+      <div class="cv-portfolio-block">
+        <h2>Portfolio</h2>
+        <div class="cv-icon">
+          <!-- Met ici l'icône/image de ton Portfolio -->
+          <img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-portefeuille-50.png" alt="Icône Portfolio" />
+        </div>
+        <div class="bubbles-container" style="justify-content: center; gap: 1rem; margin-top: 1rem;">
+          <div class="bubble-item" onclick="window.open('PoRtFoLiO (23) (1)', '_self')">
+            <img src="file:///C:/Users/roman/OneDrive/Desktop/projets/icons8-visible-50.png" alt="Visualiser" />
+            Visualiser
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin nouveau compartiment CV & Portfolio -->
+
+    <h2>Projets marquants</h2>
+    <div class="projects">
+      <div class="project">
+        <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/capricorne%201.png" alt="Logo Capricorne">
+        <h3>Logo Capricorne</h3>
+        <p>Logo réalisé sur demande d’un particulier.</p>
+        <button onclick="location.href='illustrator.html'">En savoir plus</button>
+      </div>
+      <div class="project">
+        <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/lion%20mercedes.png" alt="Logo Lion">
+        <h3>Logo Lion</h3>
+        <p>Logo fait sur demande d’un particulier.</p>
+        <button onclick="location.href='illustrator.html'">En savoir plus</button>
+      </div>
+    </div>
+
+    <h2>Mes valeurs</h2>
+    <p>Respect du détail et rigueur dans les recherches. J’accorde beaucoup d’importance à la qualité du rendu et à l’analyse avant la création.</p>
+
+    <div class="cta">
+      <a href="contact.html">Me contacter</a>
+    </div>
+  </section>
+
+  <script>
+    // Menu déroulant Projets
+    const projetsMenu = document.getElementById('projetsMenu');
+    const dropdownLi = projetsMenu.parentElement;
+
+    projetsMenu.addEventListener('click', (e) => {
+      e.preventDefault();
+      dropdownLi.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!dropdownLi.contains(event.target)) {
+        dropdownLi.classList.remove('open');
+      }
+    });
+
+    // Opacité du header au scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>

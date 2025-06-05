@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Reoman Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #6B0F1A, #36080D);
+      color: #f4f4f4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #fdf7e7;
+      color: #000;
+      height: 90px;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: opacity 0.4s ease;
+    }
+
+    header.scrolled {
+      opacity: 0.4;
+    }
+
+    .logo img {
+      height: 100px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav li {
+      position: relative;
+      user-select: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .arrow {
+      border: solid #000;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 4px;
+      transform: rotate(45deg);
+      margin-left: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fdf7e7;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      min-width: 160px;
+      z-index: 2000;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 15px;
+      color: #000;
+      font-weight: normal;
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #d9d2b8;
+    }
+
+    nav li.open > a .arrow {
+      transform: rotate(-135deg);
+    }
+
+    nav li.open > .dropdown-menu {
+      display: block;
+    }
+
+    main {
+      flex: 1;
+      padding: 3rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fdf7e7;
+      text-align: center;
+    }
+
+    p.intro {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #fdf7e7;
+    }
+
+    .social-links {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .social-links a {
+      color: #fdf7e7;
+      margin: 0 10px;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .contact-info {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      margin-bottom: 2rem;
+      color: #fdf7e7;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    form {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    button {
+      background-color: #fdf7e7;
+      color: #6B0F1A;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 0 auto;
+    }
+
+    button:hover {
+      background-color: #d9d2b8;
+    }
+
+    .cta {
+      margin-top: 2rem;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #fdf7e7;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      main {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/Monogramme.png" alt="Logo Reoman" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="accueil1.html">Accueil</a></li>
+        <li class="dropdown">
+          <a href="#" id="projetsMenu">Projets <i class="arrow"></i></a>
+          <div class="dropdown-menu" aria-labelledby="projetsMenu">
+            <a href="illustrator.html">Illustrator</a>
+            <a href="aftereffects.html">After Effects</a>
+            <a href="video.html">Vidéos</a>
+            <a href="figma.html">Figma</a>
+          </div>
+        </li>
+        <li><a href="Apropos.html">À propos</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Contactez-moi</h1>
+    <p class="intro">N’hésitez pas à me contacter pour toute question.</p>
+
+    <div class="social-links">
+      <!-- Remplace les # par tes liens réseaux sociaux -->
+      <a href="https://www.linkedin.com/in/roman-filipciuc?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+      <a href="https://www.instagram.com/roman_thff/profilecard/?igsh=MWI4ODR4eXFuOWl5" target="_blank" rel="noopener noreferrer">Instagram</a> |
+      <a href="https://www.tiktok.com/@davidtheaxolotl0?_t=ZN-8wvTjnRg742&_r=1" target="_blank" rel="noopener noreferrer">TikTok</a>
+    </div>
+
+    <div class="contact-info">
+      📧 Email : <a href="romanfilipciuc2006@mail.ru" style="color:#fdf7e7; text-decoration: underline;">tonemail@example.com</a><br />
+      📞 Téléphone : <a href="tel:+337 65 28 52 58" style="color:#fdf7e7; text-decoration: underline;">07 65 28 52 58</a>
+    </div>
+
+    <form id="contactForm" action="mailto:tonemail@example.com" method="POST" enctype="text/plain">
+      <label for="name">Nom</label>
+      <input type="text" id="name" name="Nom" required placeholder="Votre nom" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="Email" required placeholder="Votre email" />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="Message" required placeholder="Votre message"></textarea>
+
+      <button type="submit">Envoyer</button>
+    </form>
+
+    <p class="cta">Je réponds rapidement à vos messages ! Hâte de collaborer avec vous.</p>
+  </main>
+
+  <script>
+    // Menu déroulant Projets
+    const projetsMenu = document.getElementById('projetsMenu');
+    const dropdownLi = projetsMenu.parentElement;
+
+    projetsMenu.addEventListener('click', (e) => {
+      e.preventDefault();
+      dropdownLi.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!dropdownLi.contains(event.target)) {
+        dropdownLi.classList.remove('open');
+      }
+    });
+
+    // Opacité du header au scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>

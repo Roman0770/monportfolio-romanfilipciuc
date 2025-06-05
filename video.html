@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vidéo IA | Reoman Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #6B0F1A, #36080D);
+      color: #f4f4f4;
+    }
+
+    header {
+      background-color: #fdf7e7;
+      color: #000;
+      height: 90px;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: opacity 0.4s ease;
+    }
+
+    header.scrolled {
+      opacity: 0.4;
+    }
+
+    .logo img {
+      height: auto;
+      width: 100px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav li {
+      position: relative;
+      user-select: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .arrow {
+      border: solid #000;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 4px;
+      transform: rotate(45deg);
+      margin-left: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fdf7e7;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      min-width: 160px;
+      z-index: 2000;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 15px;
+      color: #000;
+      font-weight: normal;
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #d9d2b8;
+    }
+
+    nav li.open > a .arrow {
+      transform: rotate(-135deg);
+    }
+
+    nav li.open > .dropdown-menu {
+      display: block;
+    }
+
+    /* Centrage du logo vidéo */
+    .video-logo {
+      display: flex;
+      justify-content: center;
+      margin-top: -10px;
+      margin-bottom: 150px;
+    }
+
+    .video-logo img {
+      width: 150px;
+      height: auto;
+    }
+
+    /* Section vidéo + texte alignés */
+    .content-section {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin-top: 70px;
+      color: #f4f4f4;
+      width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+
+      /* Animation initiale */
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    /* Animation visible */
+    .content-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .content-section .video-container,
+    .content-section .text-container {
+      width: 450px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .content-section .video-container video {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    }
+
+    .content-section .text-container p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      max-width: 400px;
+      margin: 0 auto;
+      color: #f4f4f4;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .content-section {
+        width: 100%;
+        flex-direction: column !important;
+        gap: 2rem;
+        margin-top: 50px;
+      }
+      .content-section .video-container,
+      .content-section .text-container {
+        width: 100%;
+        justify-content: center;
+      }
+      .content-section .text-container p {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/Monogramme.png" alt="Logo Reoman" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="accueil1.html">Accueil</a></li>
+        <li class="dropdown">
+          <a href="#" id="projetsMenu">Projets <i class="arrow"></i></a>
+          <div class="dropdown-menu" aria-labelledby="projetsMenu">
+            <a href="illustrator.html">Illustrator</a>
+            <a href="aftereffects.html">After Effects</a>
+            <a href="#">Vidéos</a>
+            <a href="figma.html">Figma</a>
+          </div>
+        </li>
+        <li><a href="Apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Logo vidéo centré -->
+  <div class="video-logo">
+    <img src="file:///C:/Users/roman/OneDrive/Desktop/projets/lecteur-video.png" alt="Logo vidéo" />
+  </div>
+
+  <!-- Section vidéo + texte -->
+  <section class="content-section">
+    <div class="video-container">
+      <video controls>
+        <source src="Clip video love your voice Jony.mp4" type="video/mp4" />
+        Votre navigateur ne prend pas en charge la lecture vidéo.
+      </video>
+    </div>
+    <div class="text-container">
+      <p>Vidéo crée avec IA en groupe</p>
+    </div>
+  </section>
+
+  <script>
+    // Dropdown menu toggle
+    const projetsMenu = document.getElementById('projetsMenu');
+    const dropdownLi = projetsMenu.parentElement;
+
+    projetsMenu.addEventListener('click', (e) => {
+      e.preventDefault();
+      dropdownLi.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!dropdownLi.contains(event.target)) {
+        dropdownLi.classList.remove('open');
+      }
+    });
+
+    // Header opacity on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Animation on scroll using Intersection Observer
+    const sections = document.querySelectorAll('.content-section');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Illustrator | Reoman Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #6B0F1A, #36080D);
+      color: #f4f4f4;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #fdf7e7;
+      color: #000;
+      height: 90px;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: opacity 0.4s ease;
+    }
+
+    header.scrolled {
+      opacity: 0.4;
+    }
+
+    .logo img {
+      height: 100px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav li {
+      position: relative;
+      user-select: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .arrow {
+      border: solid #000;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 4px;
+      transform: rotate(45deg);
+      margin-left: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fdf7e7;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      min-width: 160px;
+      z-index: 2000;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 15px;
+      color: #000;
+      font-weight: normal;
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #d9d2b8;
+    }
+
+    nav li.open > a .arrow {
+      transform: rotate(-135deg);
+    }
+
+    nav li.open > .dropdown-menu {
+      display: block;
+    }
+
+    .page-container {
+      padding: 40px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .illustrator-logo {
+      display: flex;
+      justify-content: center;
+      margin-top: -10px;
+      margin-bottom: 150px;
+    }
+
+    .illustrator-logo img {
+      width: 150px;
+      height: auto;
+    }
+
+    .section-left-image,
+    .section-right-images {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 80px;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .section-left-image.show,
+    .section-right-images.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-left-image .image-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .section-left-image .image-container img {
+      max-width: 400px;
+      border-radius: 20px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .section-left-image .image-container img:hover,
+    .section-right-images .images-container img:hover {
+      transform: scale(1.05);
+    }
+
+    .section-left-image .text-container {
+      flex: 1;
+      font-size: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .section-right-images .text-container {
+      flex: 1;
+      font-size: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .section-right-images .images-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .section-right-images .images-container img {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 20px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .page-container {
+        padding: 20px;
+      }
+
+      .section-left-image,
+      .section-right-images {
+        flex-direction: column;
+      }
+
+      .section-left-image .image-container,
+      .section-right-images .images-container,
+      .section-left-image .text-container,
+      .section-right-images .text-container {
+        flex: none;
+        width: 100%;
+      }
+    }
+
+    /* Lightbox styles */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.5);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/Monogramme.png" alt="Logo Reoman" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="accueil1.html">Accueil</a></li>
+        <li class="dropdown">
+          <a href="#" id="projetsMenu">Projets <i class="arrow"></i></a>
+          <div class="dropdown-menu" aria-labelledby="projetsMenu">
+            <a href="illustrator.html">Illustrator</a>
+            <a href="aftereffects.html">After Effects</a>
+            <a href="video.html">Vidéos</a>
+            <a href="figma.html">Figma</a>
+          </div>
+        </li>
+        <li><a href="Apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-container">
+    <div class="illustrator-logo">
+      <img id="illustrator-logo" src="file:///C:/Users/roman/OneDrive/Desktop/projets/Adobe%20Illustrator%20CC%20Old.png" alt="Logo Illustrator" />
+    </div>
+
+    <section class="section-left-image">
+      <div class="image-container">
+        <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/lion%20mercedes.png" alt="Lion Mercedes" />
+      </div>
+      <div class="text-container">
+        <p>
+          Logo sur demande fait sur Illustrator qui réunit le logo de Mercedes et la tête d’un lion.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-right-images">
+      <div class="text-container">
+        <p>
+          Logo sur demande fait sur Illustrator qui représente un capricorne d’or (2 versions).
+        </p>
+      </div>
+      <div class="images-container">
+        <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/capricorne%201.png" alt="Capricorne 1" />
+        <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/capricorne%202.png" alt="Capricorne 2" />
+      </div>
+    </section>
+
+    <section class="section-left-image">
+      <div class="image-container">
+        <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/Monogramme.png" alt="Monogramme FR" />
+      </div>
+      <div class="text-container">
+        <p>
+          Monogramme qui reprend mes initiales F et R.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-right-images">
+      <div class="text-container">
+        <p>
+          Mood-board qui représente la rage.
+        </p>
+      </div>
+      <div class="images-container">
+        <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/Moodboard%20rage.png" alt="Moodboard Rage" />
+      </div>
+    </section>
+
+    <section class="section-left-image">
+      <div class="image-container">
+        <img src="file:///C:/Users/roman/OneDrive/Desktop/travaux/Metro%20oulot%20dondon.png" alt="Affiche Métro" />
+      </div>
+      <div class="text-container">
+        <p>
+          Affiche métro pour sensibiliser la population au sans-abrisme.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Lightbox HTML -->
+  <div id="lightbox">
+    <span class="close-btn">&times;</span>
+    <img id="lightbox-img" src="" alt="Image en grand">
+  </div>
+
+  <script>
+    // Menu déroulant "Projets"
+    const projetsMenuLink = document.getElementById('projetsMenu');
+    const projetsLi = projetsMenuLink.parentElement;
+
+    projetsMenuLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isOpen = projetsLi.classList.contains('open');
+      document.querySelectorAll('nav li').forEach(li => li.classList.remove('open'));
+      if (!isOpen) {
+        projetsLi.classList.add('open');
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!projetsLi.contains(e.target)) {
+        projetsLi.classList.remove('open');
+      }
+    });
+
+    // Animation au scroll
+    const sections = document.querySelectorAll('.section-left-image, .section-right-images');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
+
+    // Effet d'opacité du header au scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.querySelector('.close-btn');
+    const images = document.querySelectorAll('img:not(#illustrator-logo)');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
