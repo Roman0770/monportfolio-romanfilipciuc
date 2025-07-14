@@ -6,10 +6,8 @@
   <title>Roman Filipciuc | Recherche Alternance en Communication Digitale</title>
   <meta name="description" content="Portfolio de Roman Filipciuc, étudiant en communication digitale en recherche d'alternance, présentant ses projets en vidéo, design et communication." />
 
-
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* ... ton CSS inchangé ... */
     * {
       margin: 0;
       padding: 0;
@@ -124,7 +122,6 @@
       height: 100vh;
     }
 
-    /* Nouveau conteneur pour la photo avec cadre animé */
     .hero .profile-frame {
       position: absolute;
       top: 95px;
@@ -146,7 +143,6 @@
       z-index: 20;
     }
 
-    /* Cadre brillant tournant */
     .hero .profile-frame::before {
       content: '';
       position: absolute;
@@ -239,24 +235,17 @@
       100% { transform: translateX(-50%); }
     }
 
+    /* === Modifications pour la grille carousel === */
+
     .carousel {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       padding: 2rem;
       position: relative;
       overflow: visible;
       width: 100%;
-    }
-
-    .carousel-track {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1rem;
-      transition: transform 0.5s ease;
-      overflow: visible;
-      padding-bottom: 1rem;
-      width: 100%;
+      justify-items: center;
     }
 
     .card {
@@ -264,17 +253,16 @@
       border-radius: 10px;
       padding: 1rem;
       text-align: center;
-      flex: 1 1 0;
-      margin: 0 0.5rem;
       color: #f4f4f4;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
       position: relative;
-      z-index: 1;
+      width: 100%;
+      max-width: 350px;
     }
 
     .card:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
       z-index: 10;
     }
@@ -308,11 +296,11 @@
       object-fit: contain;
       border-radius: 8px;
     }
-	
-	.barreh2{
-	margin-top:-300px;
+
+    .barreh2 {
+      margin-top: -300px;
     }
-	
+
     .en-savoir-plus {
       text-decoration: underline;
       font-weight: 600;
@@ -326,11 +314,6 @@
     }
 
     @media (max-width: 768px) {
-      .card {
-        flex: 0 0 80%;
-        margin: 0 auto;
-      }
-
       .hero h1 {
         font-size: 36px;
         top: 580px;
@@ -356,128 +339,80 @@
         font-size: 20px;
       }
     }
+
+    /* Media query pour forcer 1 colonne sur petits écrans */
+    @media (max-width: 600px) {
+      .carousel {
+        grid-template-columns: 1fr !important;
+        padding: 1rem;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header>
     <div class="logo">
-      <img src="Monogramme.png" alt="Logo Roman" />
+      <img src="./logo.png" alt="Logo Roman Filipciuc" />
     </div>
     <nav>
       <ul>
-        <li><a href="index.html">Accueil</a></li>
         <li class="dropdown">
-          <a href="#" id="projetsMenu">Projets <i class="arrow"></i></a>
-          <ul class="dropdown-menu" aria-labelledby="projetsMenu">
-            <li><a href="illustrator.html">Illustrator</a></li>
-            <li><a href="aftereffects.html">After Effects</a></li>
-            <li><a href="video.html">Vidéos</a></li>
-            <li><a href="figma.html">Figma</a></li>
+          <a href="#">Projets <i class="arrow"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="#video">Vidéos</a></li>
+            <li><a href="#design">Designs</a></li>
+            <li><a href="#communication">Communication</a></li>
           </ul>
         </li>
-        <li><a href="Apropos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <section class="hero">
     <div class="profile-frame">
-      <img src="photodeprofil.webp" alt="Photo" />
+      <img src="./portrait.png" alt="Portrait de Roman Filipciuc" />
     </div>
-    <h1>FILIPCIUC ROMAN</h1>
-    <h2>Etudiant En Communication Digitale</h2>
-    <p>
-      À 19 ans, je suis un jeune créatif en quête d’une alternance dans le domaine de la communication digitale. Actuellement étudiant à l’EDTA Sornas, je prépare un Bachelor Responsable de Projet de Communication Digitale, avec un rythme d’alternance d’une semaine en entreprise / une semaine en centre de formation.
-    </p>
+    <h1>Roman Filipciuc</h1>
+    <h2>Étudiant en Communication Digitale</h2>
+    <p>En recherche d’alternance pour 2025, passionné par le web design et le motion design.</p>
   </section>
-  
-<hr class="barreh">
 
-  <div class="marquee-container" aria-label="Texte défilant des projets">
-    <div class="marquee-content" aria-hidden="true">
-      <span>projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets</span>
-      <span>projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets</span>
+  <section class="carousel" id="video">
+    <div class="card">
+      <div class="card-title">
+        Vidéo de présentation
+        <img src="./icon-play.png" alt="Play icon" />
+      </div>
+      <div class="card-img-container">
+        <img src="./presentation.png" alt="Vidéo de présentation" />
+      </div>
+      <div class="en-savoir-plus">En savoir plus</div>
     </div>
-  </div>
-  
-<hr class="barreh2">
 
-  <section class="carousel">
-    <div class="carousel-track" id="carouselTrack">
-      <div class="card">
-        <div class="card-title">
-          Vidéo <img src="lecteur-video.png" alt="Icône vidéo"/>
-        </div>
-        <div class="card-img-container">
-          <img src="capture-clip.webp" alt="Vidéo" />
-        </div>
-        <p class="en-savoir-plus">
-          <a href="video.html" style="color:inherit; text-decoration: underline;">En savoir plus</a>
-        </p>
+    <div class="card">
+      <div class="card-title">
+        Montage After Effects
+        <img src="./icon-montage.png" alt="Montage icon" />
       </div>
+      <div class="card-img-container">
+        <img src="./aftereffects.png" alt="Montage AE" />
+      </div>
+      <div class="en-savoir-plus">En savoir plus</div>
+    </div>
 
-      <div class="card">
-        <div class="card-title">
-          After Effects <img src="icons8-adobe-after-effects-48.png" alt="Logo After Effects" />
-        </div>
-        <div class="card-img-container">
-          <img src="capture mur.PNG" alt="After Effects" />
-        </div>
-        <p class="en-savoir-plus">
-          <a href="aftereffects.html" style="color:inherit; text-decoration: underline;">En savoir plus</a>
-        </p>
+    <div class="card">
+      <div class="card-title">
+        Montage CapCut
+        <img src="./icon-capcut.png" alt="CapCut icon" />
       </div>
-
-      <div class="card">
-        <div class="card-title">
-          Illustrator <img src="Adobe Illustrator CC Old.png" alt="Logo Illustrator" />
-        </div>
-        <div class="card-img-container">
-          <img src="capricorne 1.png" alt="Illustrator" />
-        </div>
-        <p class="en-savoir-plus">
-          <a href="illustrator.html" style="color:inherit; text-decoration: underline;">En savoir plus</a>
-        </p>
+      <div class="card-img-container">
+        <img src="./capcut.png" alt="Montage CapCut" />
       </div>
-
-      <div class="card">
-        <div class="card-title">
-          Figma <img src="figma-seeklogo.png" alt="Logo Figma" />
-        </div>
-        <div class="card-img-container">
-          <img src="Page d'authentification.png" alt="Figma" />
-        </div>
-        <p class="en-savoir-plus">
-          <a href="figma.html" style="color:inherit; text-decoration: underline;">En savoir plus</a>
-        </p>
-      </div>
+      <div class="en-savoir-plus">En savoir plus</div>
     </div>
   </section>
 
-  <script>
-    const projetsMenu = document.getElementById('projetsMenu');
-    const dropdownLi = projetsMenu.parentElement;
-
-    projetsMenu.addEventListener('click', (e) => {
-      e.preventDefault();
-      dropdownLi.classList.toggle('open');
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!dropdownLi.contains(event.target)) {
-        dropdownLi.classList.remove('open');
-      }
-    });
-
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('header');
-      if (window.scrollY > 10) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-  </script>
 </body>
 </html>
