@@ -325,58 +325,278 @@
       display: none;
     }
 
-    @media (max-width: 768px) {
+    /* =====================
+       HEADER & BURGER MENU
+    ===================== */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      z-index: 2001;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      transition: background 0.2s;
+    }
+    .burger:hover, .burger:focus {
+      background: rgba(255,255,255,0.95);
+    }
+    .burger span {
+      display: block;
+      width: 28px;
+      height: 4px;
+      margin: 4px 0;
+      background: #6B0F1A;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    /* Animation burger croix */
+    .burger.open span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .burger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .burger.open span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    /* Overlay menu mobile */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(43,33,24,0.85);
+      z-index: 1999;
+      backdrop-filter: blur(2px);
+      transition: opacity 0.3s;
+    }
+    .nav-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+    @media (max-width: 1024px) {
+      nav ul {
+        gap: 1.2rem;
+      }
+      .carousel-track {
+        gap: 0.5rem;
+      }
+    }
+    @media (max-width: 900px) {
+      .carousel-track {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
       .card {
-        flex: 0 0 80%;
+        max-width: 95vw;
         margin: 0 auto;
       }
-
-      .hero h1 {
-        font-size: 36px;
-        top: 580px;
+      .marquee-container {
+        font-size: 2.2rem;
+        margin-bottom: 120px;
       }
-
-      .hero h2 {
-        font-size: 28px;
-        top: 620px;
+    }
+    @media (max-width: 768px) {
+      header {
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 1rem;
+        justify-content: space-between;
       }
-
+      .logo img {
+        height: 60px;
+      }
+      .burger {
+        display: flex;
+      }
+      nav {
+        width: 100%;
+      }
+      /* Overlay menu mobile */
+      nav ul {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: transparent;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+        z-index: 2002;
+        transform: translateY(-120%);
+        transition: transform 0.3s;
+        box-shadow: none;
+      }
+      nav ul.open {
+        background: rgba(253,247,231,0.98);
+        transform: translateY(0);
+      }
+      nav ul li {
+        width: 100%;
+        border-bottom: none;
+        text-align: center;
+      }
+      nav ul li a {
+        padding: 22px 0;
+        width: 100vw;
+        color: #6B0F1A;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        min-width: 100%;
+        background: transparent;
+      }
+      .dropdown-menu a {
+        padding-left: 0;
+        font-size: 1.1rem;
+      }
+      /* HERO section mobile */
+      .hero {
+        height: auto;
+        min-height: 0;
+        padding: 32px 0 18px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
       .hero .profile-frame {
-        width: 300px;
-        height: 300px;
-        top: 120px;
-        left: 50%;
-        transform: translateX(-50%);
+        position: static;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 18px auto;
+        left: 0;
+        top: 0;
+        transform: none;
       }
-
+      .hero h1 {
+        position: static;
+        font-size: 1.25rem;
+        text-align: center;
+        margin: 0 auto 8px auto;
+        letter-spacing: 0.5px;
+      }
+      .hero h2 {
+        position: static;
+        font-size: 1.05rem;
+        text-align: center;
+        margin: 0 auto 14px auto;
+        font-weight: 600;
+      }
       .hero p {
         position: static;
+        font-size: 0.98rem;
         text-align: center;
-        margin-top: 20px;
-        font-size: 20px;
+        margin: 0 auto 10px auto;
+        max-width: 95vw;
+      }
+      .marquee-container {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        padding: 8px 0;
+        opacity: 0.8;
+      }
+      .carousel {
+        padding: 0.5rem 0.2rem;
+      }
+      .carousel-track {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        padding-bottom: 0.5rem;
+      }
+      .card {
+        min-width: 0;
+        width: 98vw;
+        max-width: 98vw;
+        margin: 0 auto 18px auto;
+        font-size: 1rem;
+        padding: 1.1rem 0.5rem 1.5rem 0.5rem;
+        border-radius: 18px;
+        box-shadow: 0 2px 12px rgba(43,33,24,0.10);
+      }
+      .card-title {
+        font-size: 1.13rem;
+        margin-bottom: 0.7rem;
+      }
+      .card-img-container {
+        height: 120px;
+        margin-bottom: 0.7rem;
+      }
+      .card-img-container img {
+        max-width: 90vw;
+        max-height: 120px;
+        border-radius: 10px;
+      }
+      .en-savoir-plus {
+        font-size: 1.08rem;
+        margin-top: 0.7rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero .profile-frame {
+        width: 80px;
+        height: 80px;
+      }
+      .hero h1 {
+        font-size: 1.02rem;
+      }
+      .hero h2 {
+        font-size: 0.85rem;
+      }
+      .marquee-container {
+        font-size: 0.85rem;
+      }
+      .card {
+        font-size: 0.95rem;
+        padding: 0.7rem 0.2rem 1.1rem 0.2rem;
+      }
+      .card-img-container {
+        height: 60px;
+      }
+      .card-img-container img {
+        max-height: 60px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="nav-overlay" id="navOverlay"></div>
   <header>
     <div class="logo">
       <img src="Monogramme.png" alt="Logo Roman" />
     </div>
+    <div class="burger" id="burgerMenu" aria-label="Ouvrir le menu" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
     <nav>
-      <ul>
+      <ul id="mainNav">
         <li><a href="index.html">Accueil</a></li>
         <li class="dropdown">
           <a href="#" id="projetsMenu">Projets <i class="arrow"></i></a>
           <ul class="dropdown-menu" aria-labelledby="projetsMenu">
-            <li><a href="illustrator.html">Illustrator</a></li>
-            <li><a href="aftereffects.html">After Effects</a></li>
+            <li><a href="illustrator7.html">Illustrator</a></li>
+            <li><a href="aftereffects7.html">After Effects</a></li>
             <li><a href="video.html">Vidéos</a></li>
-            <li><a href="figma.html">Figma</a></li>
+            <li><a href="figma7.html">Figma</a></li>
           </ul>
         </li>
-        <li><a href="Apropos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="apropos7.html">À propos</a></li>
+        <li><a href="contact7.html">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -396,7 +616,7 @@
 
   <div class="marquee-container" aria-label="Texte défilant des projets">
     <div class="marquee-content" aria-hidden="true">
-      <span>projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets</span>
+      <span>projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets</span>
       <span>projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets projets</span>
     </div>
   </div>
@@ -413,7 +633,7 @@
           <img src="capture-clip.webp" alt="Vidéo" />
         </div>
         <p class="en-savoir-plus">
-          <a href="video.html" style="color:inherit; text-decoration: underline;">En savoir plus</a>
+          <a href="video.html" style="color:inherit; text-decoration: underline;">Voir Vidéo</a>
         </p>
       </div>
 
@@ -425,7 +645,7 @@
           <img src="capture mur.PNG" alt="After Effects" />
         </div>
         <p class="en-savoir-plus">
-          <a href="aftereffects.html" style="color:inherit; text-decoration: underline;">En savoir plus</a>
+          <a href="aftereffects7.html" style="color:inherit; text-decoration: underline;">Voir After Effects</a>
         </p>
       </div>
 
@@ -437,7 +657,7 @@
           <img src="capricorne 1.png" alt="Illustrator" />
         </div>
         <p class="en-savoir-plus">
-          <a href="illustrator.html" style="color:inherit; text-decoration: underline;">En savoir plus</a>
+          <a href="illustrator7.html" style="color:inherit; text-decoration: underline;">Voir Illustrator</a>
         </p>
       </div>
 
@@ -449,7 +669,7 @@
           <img src="Page d'authentification.png" alt="Figma" />
         </div>
         <p class="en-savoir-plus">
-          <a href="figma.html" style="color:inherit; text-decoration: underline;">En savoir plus</a>
+          <a href="figma7.html" style="color:inherit; text-decoration: underline;">Voir Figma</a>
         </p>
       </div>
     </div>
@@ -478,6 +698,35 @@
         header.classList.remove('scrolled');
       }
     });
+
+    // --- BURGER MENU RESPONSIVE AVEC OVERLAY ---
+    const burger = document.getElementById('burgerMenu');
+    const navUl = document.getElementById('mainNav');
+    const navOverlay = document.getElementById('navOverlay');
+    function closeMenu() {
+      navUl.classList.remove('open');
+      burger.classList.remove('open');
+      navOverlay.classList.remove('active');
+    }
+    burger.addEventListener('click', () => {
+      navUl.classList.toggle('open');
+      burger.classList.toggle('open');
+      navOverlay.classList.toggle('active');
+    });
+    burger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        navUl.classList.toggle('open');
+        burger.classList.toggle('open');
+        navOverlay.classList.toggle('active');
+      }
+    });
+    navOverlay.addEventListener('click', closeMenu);
+    // Fermer le menu au clic sur un lien (mobile)
+    navUl.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(window.innerWidth <= 768) closeMenu();
+      });
+    });
   </script>
 </body>
-</html>
+</html> 
