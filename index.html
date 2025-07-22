@@ -632,6 +632,72 @@
         margin-bottom: 0 !important;
       }
     }
+    /* === Correction fond et header pleine largeur sur toutes tailles d'écran === */
+    html, body {
+      width: 100vw;
+      min-width: 100vw;
+      max-width: 100vw;
+      overflow-x: hidden;
+      background: linear-gradient(to right, #6B0F1A, #36080D);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    header {
+      width: 100vw;
+      min-width: 100vw;
+      max-width: 100vw;
+      left: 0;
+      right: 0;
+      margin: 0;
+      box-sizing: border-box;
+      border: none;
+    }
+    nav {
+      width: 100vw;
+      min-width: 100vw;
+      max-width: 100vw;
+      box-sizing: border-box;
+    }
+    nav ul {
+      width: 100vw;
+      min-width: 100vw;
+      max-width: 100vw;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    /* S'assurer que tous les éléments du menu sont alignés et contenus dans le header */
+    nav ul li {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    /* Correction spécifique mobile si besoin */
+    @media (max-width: 1024px), (max-width: 900px), (max-width: 768px), (max-width: 480px) {
+      html, body {
+        width: 100vw !important;
+        min-width: 100vw !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        background: linear-gradient(to right, #6B0F1A, #36080D) !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+      }
+      header, nav, nav ul {
+        width: 100vw !important;
+        min-width: 100vw !important;
+        max-width: 100vw !important;
+        left: 0 !important;
+        right: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+      }
+      nav ul li {
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -649,14 +715,14 @@
         <li class="dropdown">
           <a href="#" id="projetsMenu">Projets <i class="arrow"></i></a>
           <ul class="dropdown-menu" aria-labelledby="projetsMenu">
-            <li><a href="illustrator.html">Illustrator</a></li>
-            <li><a href="aftereffects.html">After Effects</a></li>
+            <li><a href="illustrator7.html">Illustrator</a></li>
+            <li><a href="aftereffects7.html">After Effects</a></li>
             <li><a href="video.html">Vidéos</a></li>
-            <li><a href="figma.html">Figma</a></li>
+            <li><a href="figma7.html">Figma</a></li>
           </ul>
         </li>
-        <li><a href="apropos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="apropos7.html">À propos</a></li>
+        <li><a href="contact7.html">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -705,7 +771,7 @@
           <img src="capture mur.PNG" alt="After Effects" />
         </div>
         <p class="en-savoir-plus">
-          <a href="aftereffects.html" style="color:inherit; text-decoration: underline;">Voir After Effects</a>
+          <a href="aftereffects7.html" style="color:inherit; text-decoration: underline;">Voir After Effects</a>
         </p>
       </div>
 
@@ -717,7 +783,7 @@
           <img src="capricorne 1.png" alt="Illustrator" />
         </div>
         <p class="en-savoir-plus">
-          <a href="illustrator.html" style="color:inherit; text-decoration: underline;">Voir Illustrator</a>
+          <a href="illustrator7.html" style="color:inherit; text-decoration: underline;">Voir Illustrator</a>
         </p>
       </div>
 
@@ -729,7 +795,7 @@
           <img src="Page d'authentification.png" alt="Figma" />
         </div>
         <p class="en-savoir-plus">
-          <a href="figma.html" style="color:inherit; text-decoration: underline;">Voir Figma</a>
+          <a href="figma7.html" style="color:inherit; text-decoration: underline;">Voir Figma</a>
         </p>
       </div>
     </div>
