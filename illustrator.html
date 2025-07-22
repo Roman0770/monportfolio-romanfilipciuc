@@ -236,6 +236,79 @@
       cursor: pointer;
       font-weight: bold;
     }
+
+    @media (max-width: 768px) {
+      /* === Responsive mobile avancé : structure fluide, espacement généreux, pas de superposition === */
+      body {
+        overflow-x: hidden;
+      }
+      main, section, .page-container {
+        width: 100vw;
+        max-width: 100vw;
+        box-sizing: border-box;
+      }
+      /* Logo Figma centré, gros espacements */
+      .illustrator-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0;
+        margin-bottom: 80px;
+        width: 100vw;
+        max-width: 100vw;
+      }
+      /* Espacement généreux entre sections principales */
+      section, .illustrator-logo {
+        margin-bottom: 320px !important;
+      }
+      /* Sections image + texte : pile verticale, marges */
+      .section-left-image, .section-right-images {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0 !important;
+        width: 100vw;
+        max-width: 100vw;
+        margin-bottom: 320px !important;
+        position: static !important;
+      }
+      .section-left-image .image-container, .section-right-images .images-container {
+        width: 100vw;
+        max-width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+      .section-left-image .image-container img, .section-right-images .images-container img {
+        display: block;
+        margin: 0 auto 18px auto;
+        max-width: 90vw;
+        height: auto;
+        max-height: 220px;
+        object-fit: contain;
+      }
+      .section-left-image .text-container, .section-right-images .text-container {
+        width: 100vw;
+        max-width: 95vw;
+        text-align: center;
+        font-size: 1.1rem;
+        margin: 0 auto 40px auto;
+        word-break: break-word;
+      }
+      /* Lightbox : image centrée, pas de débordement */
+      #lightbox img {
+        max-width: 95vw;
+        max-height: 80vh;
+        margin: auto;
+        display: block;
+      }
+      /* Empêcher tout débordement horizontal */
+      * {
+        box-sizing: border-box;
+        max-width: 100vw;
+      }
+    }
   </style>
 </head>
 <body>
@@ -245,18 +318,18 @@
     </div>
     <nav>
       <ul>
-        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index7.html">Accueil</a></li>
         <li class="dropdown">
           <a href="#" id="projetsMenu">Projets <i class="arrow"></i></a>
           <div class="dropdown-menu" aria-labelledby="projetsMenu">
-            <a href="illustrator.html">Illustrator</a>
-            <a href="aftereffects.html">After Effects</a>
+            <a href="illustrator7.html">Illustrator</a>
+            <a href="aftereffects7.html">After Effects</a>
             <a href="video.html">Vidéos</a>
-            <a href="figma.html">Figma</a>
+            <a href="figma7.html">Figma</a>
           </div>
         </li>
-        <li><a href="Apropos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="apropos7.html">À propos</a></li>
+        <li><a href="contact7.html">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -397,4 +470,4 @@
     });
   </script>
 </body>
-</html>
+</html> 
